@@ -53,14 +53,14 @@ Z3 = tf.matmul(A2, W3)+b3
 A3 = tf.nn.relu(Z3)
 Z4 = tf.matmul(A3, W4)+b4
 A4 = tf.nn.relu(Z3)
-Z4 = tf.matmul(A3, W4)+b4
+Z4 = tf.matmul(A4, W4)+b4
 
 def compute_cost(Z4, Y):
     cost = tf.reduce_mean((Z4-Y)**2)
     return cost
 
 cost = compute_cost(Z4, Y)
-starter_learning_rate = 0.00005
+starter_learning_rate = 0.0001
 global_step = tf.Variable(0, trainable=True)
 learning_rate = tf.train.exponential_decay(starter_learning_rate, global_step, 100, 0.85, staircase=True)
 optimizer = tf.train.AdamOptimizer(learning_rate).minimize(cost)
